@@ -36,7 +36,7 @@ class SlideTile extends StatelessWidget {
         style:  const TextStyle(
           fontSize: 18,
           fontStyle: FontStyle.italic,
-          color: Colors.grey,
+          color: secondaryColor,
         ),),
         const SizedBox(
           height: 30,
