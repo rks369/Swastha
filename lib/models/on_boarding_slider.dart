@@ -21,7 +21,7 @@ List<SliderModel> getSlides() {
       description: 'Just Keep Moving'));
   slides.add(SliderModel(
       imageAssetPath: 'assets/images/meditation.gif',
-      title: 'Mental & Physical Health',
+      title: 'Swastha',
       description: 'Health is Wealth'));
 
   return slides;
