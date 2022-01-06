@@ -22,7 +22,7 @@ List<SliderModel> getSlides() {
   slides.add(SliderModel(
       imageAssetPath: 'assets/images/meditation.gif',
       title: 'Swastha',
-      description: 'Health is Wealth'));
+      description: 'Physical and Mental Health Companion'));
 
   return slides;
 }
