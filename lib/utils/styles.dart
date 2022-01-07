@@ -7,6 +7,8 @@ const Color primaryColor = Color(0xff7A64E4);
 const Color secondaryColor = Color(0xff59595d);
 
 const kTextFieldDecoration = InputDecoration(
+  filled: true,
+  fillColor: Colors.white,
   hintText: 'Enter a value',
   labelStyle: TextStyle(color: primaryColor),
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
