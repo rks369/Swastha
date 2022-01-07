@@ -24,25 +24,31 @@ class Login extends StatelessWidget {
             const SizedBox(
               height: 48.0,
             ),
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              onChanged: (value) {},
-              decoration: kTextFieldDecoration.copyWith(
-                prefixIcon: const Icon(Icons.person,color: primaryColor,),
-                  hintText: 'Enter your email',
-                  labelText: 'Enter Your Email'),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
+              child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {},
+                decoration: kTextFieldDecoration.copyWith(
+                  prefixIcon: const Icon(Icons.person,color: primaryColor,),
+                    hintText: 'Enter your email',
+                    labelText: 'Enter Your Email'),
+              ),
             ),
             const SizedBox(
               height: 8.0,
             ),
-            TextField(
-              obscureText: true,
-              onChanged: (value) {},
-              decoration: kTextFieldDecoration.copyWith(
-                  prefixIcon: const Icon(Icons.lock,color: primaryColor,),
-                  hintText: 'Enter your password',
-                  labelText: 'Enter your password'
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
+              child: TextField(
+                obscureText: true,
+                onChanged: (value) {},
+                decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: const Icon(Icons.lock,color: primaryColor,),
+                    hintText: 'Enter your password',
+                    labelText: 'Enter your password'
 
+                ),
               ),
             ),
             const SizedBox(
