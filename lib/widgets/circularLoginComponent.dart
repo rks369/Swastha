@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class circularLoginOption extends StatelessWidget {
-  const circularLoginOption({Key? key}) : super(key: key);
+  const circularLoginOption({ required this.icon});
+
+  final Image icon;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +17,10 @@ class circularLoginOption extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
-              // image: new DecorationImage(
-              //     fit: BoxFit.cover,
-              //     image: new Image.asset('images/logo.png').image
-              // )
+              image: new DecorationImage(
+                  fit: BoxFit.cover,
+                  image: icon.image
+              )
             )
         ),
       ),

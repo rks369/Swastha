@@ -61,10 +61,10 @@ class Login extends StatelessWidget {
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  circularLoginOption(),
-                  circularLoginOption(),
-                  circularLoginOption()
+                children:  <Widget>[
+                  circularLoginOption(icon:Image.asset('assets/images/google.png')),
+                  circularLoginOption(icon:Image.asset('assets/images/facebook.png')),
+                  circularLoginOption(icon:Image.asset('assets/images/twitter.png'))
                 ],
               ),
             ),
