@@ -20,7 +20,8 @@ class CircularLoginOption extends StatelessWidget {
                 color: Colors.white,
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    fit: BoxFit.cover,
+
+                    fit: BoxFit.scaleDown,
                     image: icon.image
                 )
               )

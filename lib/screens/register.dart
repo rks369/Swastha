@@ -63,7 +63,7 @@ class _RegisterState extends State<Register> {
                     },
                   ),
                   CircularLoginOption(
-                    icon: Image.asset('assets/images/facebook.png'),
+                    icon: Image.asset('assets/images/fb.jpg'),
                     onTap: () {
                       Navigator.pushNamed(context, ExtraUserDetail.id);
                     },
