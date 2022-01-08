@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swastha/utils/styles.dart';
-import 'package:swastha/widgets/circularLoginComponent.dart';
+import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class Login extends StatelessWidget {

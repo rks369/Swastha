@@ -11,13 +11,13 @@ class circularLoginOption extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: new Container(
+        child: Container(
             width: 50,
             height: 50,
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
-              image: new DecorationImage(
+              image: DecorationImage(
                   fit: BoxFit.cover,
                   image: icon.image
               )
