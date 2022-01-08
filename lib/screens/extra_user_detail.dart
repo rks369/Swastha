@@ -84,19 +84,19 @@ class _ExtraUserDetailState extends State<ExtraUserDetail> {
             state:
                 _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 0,
-            title: const Text(''),
+            title: const Text('Name'),
             content: const Text("1st")),
         Step(
             state:
                 _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 1,
-            title: const Text(''),
+            title: const Text('Picture'),
             content: const Text("2nd")),
         Step(
             state:
                 _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 2,
-            title: const Text(''),
+            title: const Text('Parameters'),
             content: const Text("3rd")),
       ];
 }
