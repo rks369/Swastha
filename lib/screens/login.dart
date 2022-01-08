@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -25,30 +26,36 @@ class Login extends StatelessWidget {
               height: 48.0,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {},
                 decoration: kTextFieldDecoration.copyWith(
-                  prefixIcon: const Icon(Icons.person,color: primaryColor,),
-                    hintText: 'Enter your email',
-                    labelText: 'Enter Your Email'),
+                    prefixIcon: const Icon(
+                      Icons.smartphone,
+                      color: primaryColor,
+                    ),
+                    hintText: 'Enter Your Mobile Number',
+                    labelText: 'Enter Your Mobile Number'),
               ),
             ),
             const SizedBox(
               height: 8.0,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
               child: TextField(
                 obscureText: true,
                 onChanged: (value) {},
                 decoration: kTextFieldDecoration.copyWith(
-                    prefixIcon: const Icon(Icons.lock,color: primaryColor,),
-                    hintText: 'Enter your password',
-                    labelText: 'Enter your password'
-
-                ),
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: primaryColor,
+                    ),
+                    hintText: 'Enter Your Password',
+                    labelText: 'Enter Your Password'),
               ),
             ),
             const SizedBox(
@@ -61,15 +68,34 @@ class Login extends StatelessWidget {
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children:  <Widget>[
-                  circularLoginOption(icon:Image.asset('assets/images/google.png')),
-                  circularLoginOption(icon:Image.asset('assets/images/facebook.png')),
-                  circularLoginOption(icon:Image.asset('assets/images/twitter.png'))
+                children: <Widget>[
+                  CircularLoginOption(
+                    icon: Image.asset('assets/images/google.png'),
+                    onTap: () {
+                      Navigator.pushNamed(context, DashBoard.id);
+                    },
+                  ),
+                  CircularLoginOption(
+                    icon: Image.asset('assets/images/facebook.png'),
+                    onTap: () {
+                      Navigator.pushNamed(context, DashBoard.id);
+                    },
+                  ),
+                  CircularLoginOption(
+                    icon: Image.asset('assets/images/twitter.png'),
+                    onTap: () {
+                      Navigator.pushNamed(context, DashBoard.id);
+                    },
+                  )
                 ],
               ),
             ),
             RoundedButton(
-                title: 'Continue', colour: primaryColor, onPressed: () {})
+                title: 'Continue',
+                colour: primaryColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, DashBoard.id);
+                })
           ],
         ),
       ),

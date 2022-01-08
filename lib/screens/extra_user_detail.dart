@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ExtraUserDetail extends StatefulWidget {
 
+  static const String id = 'ExtraUserDetail';
+
   const ExtraUserDetail({Key? key}) : super(key: key);
 
   @override
