@@ -85,7 +85,39 @@ class _ExtraUserDetailState extends State<ExtraUserDetail> {
                 _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 0,
             title: const Text('Name'),
-            content: const Text("1st")),
+            content:
+            Container(
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/images/logo.png',
+                      height: 100,
+                      width: 100,
+                    ),
+                    const SizedBox(
+                      height: 48.0,
+                    ),
+                    Padding(
+                      padding:
+                      const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) {},
+                        decoration: kTextFieldDecoration.copyWith(
+                            prefixIcon: const Icon(
+                              Icons.account_circle_sharp,
+                              color: primaryColor,
+                            ),
+                            hintText: 'Enter Your Full Name',
+                            labelText: 'Enter Your Full Name'),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            )
+        ),
         Step(
             state:
                 _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
