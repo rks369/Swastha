@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/card.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class ExtraUserDetail extends StatefulWidget {
@@ -129,6 +130,33 @@ class _ExtraUserDetailState extends State<ExtraUserDetail> {
                 _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 2,
             title: const Text('Parameters'),
-            content: const Text("3rd")),
+            content: Flexible(
+              child: Container(
+                width: double.infinity, //To make it use as much space as it wants
+                height: 200,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: Row(
+                        children: <Widget>[
+                          UserCard(),
+                          UserCard()
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: <Widget>[
+                          UserCard(),
+                          UserCard()
+                        ],
+                      ),
+                    )
+
+                  ],
+                ),
+              ),
+            )
+        )
       ];
 }
