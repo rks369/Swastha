@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swastha/screens/extra_user_detail.dart';
 import 'package:swastha/screens/name_detail.dart';
-import 'package:swastha/screens/verify_and_create_password.dart';
-import 'package:swastha/screens/verify_password.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
