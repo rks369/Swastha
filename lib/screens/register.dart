@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/extra_user_detail.dart';
+import 'package:swastha/screens/name_detail.dart';
 import 'package:swastha/screens/verify_and_create_password.dart';
+import 'package:swastha/screens/verify_password.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
+
+import 'create_password.dart';
 
 class Register extends StatefulWidget {
   static const String id = 'Register';
@@ -59,19 +63,19 @@ class _RegisterState extends State<Register> {
                   CircularLoginOption(
                     icon: Image.asset('assets/images/google.png'),
                     onTap: () {
-                      Navigator.pushNamed(context, ExtraUserDetail.id);
+                      Navigator.pushNamed(context, NameDetail.id);
                     },
                   ),
                   CircularLoginOption(
                     icon: Image.asset('assets/images/fb.jpg'),
                     onTap: () {
-                      Navigator.pushNamed(context, ExtraUserDetail.id);
+                      Navigator.pushNamed(context, NameDetail.id);
                     },
                   ),
                   CircularLoginOption(
                     icon: Image.asset('assets/images/twitter.png'),
                     onTap: () {
-                      Navigator.pushNamed(context, ExtraUserDetail.id);
+                      Navigator.pushNamed(context, NameDetail.id);
                     },
                   )
                 ],
@@ -81,7 +85,7 @@ class _RegisterState extends State<Register> {
                 title: 'Continue',
                 colour: primaryColor,
                 onPressed: () {
-                  Navigator.pushNamed(context, VerifyAndCreatePassword.id);
+                  Navigator.pushNamed(context, CreatePassword.id);
                 })
           ],
         ),

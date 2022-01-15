@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:swastha/screens/verify_password.dart';
+import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/round_button.dart';
 
 class CreatePassword extends StatefulWidget {
   static const String id = 'CreatePassword';
@@ -12,6 +15,13 @@ class CreatePassword extends StatefulWidget {
 class _CreatePasswordState extends State<CreatePassword> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: RoundedButton(
+          title: 'Continue',
+          colour: primaryColor,
+          onPressed: () {
+            Navigator.pushNamed(context, VerifyPassword.id);
+          }),
+    );
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/round_button.dart';
 
 class ParameterDetail extends StatefulWidget {
   static const String id = 'ParametersDetail';
@@ -12,6 +15,13 @@ class ParameterDetail extends StatefulWidget {
 class _ParameterDetailState extends State<ParameterDetail> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: RoundedButton(
+          title: 'Continue',
+          colour: primaryColor,
+          onPressed: () {
+            Navigator.pushNamed(context, DashBoard.id);
+          }),
+    );
   }
 }
