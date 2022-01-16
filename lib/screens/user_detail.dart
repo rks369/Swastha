@@ -56,7 +56,7 @@ class _UserDetailState extends State<UserDetail> {
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.smartphone,
-                        color: primaryColor,
+                        color: kPrimaryColor,
                       ),
                       hintText: 'Enter Your Name',
                       labelText: 'Enter Your Name'),
@@ -67,7 +67,7 @@ class _UserDetailState extends State<UserDetail> {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, PictureDetail.id);
                   })

@@ -35,7 +35,7 @@ class _ParameterDetailState extends State<ParameterDetail> {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, DashBoard.id);
                   })

@@ -57,7 +57,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             RoundedButton(
               title: currentIndex != slides.length - 1 ? 'Next' : 'Get Started',
-              colour: primaryColor,
+              colour: kPrimaryColor,
               onPressed: () {
                 if (currentIndex != slides.length - 1) {
                   pageController.animateToPage(currentIndex + 1,
@@ -114,7 +114,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       height: isCurrentPage ? 12.0 : 8.0,
       width: isCurrentPage ? 12.0 : 8.0,
       decoration: BoxDecoration(
-          color: isCurrentPage ? primaryColor : Colors.grey,
+          color: isCurrentPage ? kPrimaryColor : Colors.grey,
           borderRadius: BorderRadius.circular(12)),
     );
   }

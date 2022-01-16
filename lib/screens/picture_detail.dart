@@ -49,7 +49,7 @@ class _PictureDetailState extends State<PictureDetail> {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, ParameterDetail.id);
                   })

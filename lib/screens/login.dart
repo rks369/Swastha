@@ -40,7 +40,7 @@ class Login extends StatelessWidget {
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.smartphone,
-                        color: primaryColor,
+                        color: kPrimaryColor,
                       ),
                       counter: const Offstage(),
                       hintText: 'Enter Your Mobile Number',
@@ -59,7 +59,7 @@ class Login extends StatelessWidget {
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.lock,
-                        color: primaryColor,
+                        color: kPrimaryColor,
                       ),
                       hintText: 'Enter Your Password',
                       labelText: 'Enter Your Password'),
@@ -99,7 +99,7 @@ class Login extends StatelessWidget {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, DashBoard.id);
                   })

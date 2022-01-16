@@ -60,7 +60,7 @@ class _RegisterState extends State<Register> {
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.smartphone,
-                        color: primaryColor,
+                        color: kPrimaryColor,
                       ),
                       counter: const Offstage(),
                       hintText: 'Enter Your Mobile Number',
@@ -101,7 +101,7 @@ class _RegisterState extends State<Register> {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, VerifyOTP.id);
                   })

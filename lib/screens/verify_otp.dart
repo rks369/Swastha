@@ -69,7 +69,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                     ),
                     RoundedButton(
                         title: "Verify",
-                        colour: primaryColor,
+                        colour: kPrimaryColor,
                         onPressed: () {
                           Navigator.pushNamed(context, CreatePassword.id);
                         }),

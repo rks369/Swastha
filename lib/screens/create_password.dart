@@ -57,7 +57,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.smartphone,
-                        color: primaryColor,
+                        color: kPrimaryColor,
                       ),
                       hintText: 'Enter Your Password',
                       labelText: 'Enter Your Password'),
@@ -68,7 +68,7 @@ class _CreatePasswordState extends State<CreatePassword> {
               ),
               RoundedButton(
                   title: 'Continue',
-                  colour: primaryColor,
+                  colour: kPrimaryColor,
                   onPressed: () {
                     Navigator.pushNamed(context, UserDetail.id);
                   })
