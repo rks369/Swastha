@@ -14,13 +14,49 @@ class PictureDetail extends StatefulWidget {
 class _PictureDetailState extends State<PictureDetail> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: RoundedButton(
-          title: 'Continue',
-          colour: primaryColor,
-          onPressed: () {
-            Navigator.pushNamed(context, ParameterDetail.id);
-          }),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const Align(alignment: Alignment.topLeft, child: BackButton()),
+              const SizedBox(
+                height: 18,
+              ),
+              Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+                height: 100,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const Text(
+                'Profile Picture',
+                style: kHeadingTextStyle,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Choose Profile Picture",
+                style: kSubHeadingTextStyle,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 28,
+              ),
+              RoundedButton(
+                  title: 'Continue',
+                  colour: primaryColor,
+                  onPressed: () {
+                    Navigator.pushNamed(context, ParameterDetail.id);
+                  })
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

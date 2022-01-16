@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:swastha/screens/create_password.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/screens/login.dart';
-import 'package:swastha/screens/name_detail.dart';
+import 'package:swastha/screens/user_detail.dart';
 import 'package:swastha/screens/on_boarding.dart';
 import 'package:swastha/screens/parameters_detail.dart';
 import 'package:swastha/screens/picture_detail.dart';
 import 'package:swastha/screens/register.dart';
-import 'package:swastha/screens/verify_password.dart';
-
+import 'package:swastha/screens/verify_otp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,13 +23,12 @@ class MyApp extends StatelessWidget {
         OnBoardingScreen.id: (context) => const OnBoardingScreen(),
         Login.id: (context) => const Login(),
         Register.id: (context) => const Register(),
-        DashBoard.id : (context)=> const DashBoard(),
-        VerifyPassword.id:(context)=> const VerifyPassword(),
-        CreatePassword.id :(context)=> const CreatePassword(),
-        PictureDetail.id : (context)=> const PictureDetail(),
-        NameDetail.id : (context)=> const NameDetail(),
-      ParameterDetail.id: (context)=> const ParameterDetail()
-
+        VerifyOTP.id: (context) => const VerifyOTP(),
+        CreatePassword.id: (context) => const CreatePassword(),
+        UserDetail.id: (context) => const UserDetail(),
+        PictureDetail.id: (context) => const PictureDetail(),
+        ParameterDetail.id: (context) => const ParameterDetail(),
+        DashBoard.id: (context) => const DashBoard(),
       },
       debugShowCheckedModeBanner: false,
     );

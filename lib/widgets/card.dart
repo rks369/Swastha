@@ -8,7 +8,7 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        child: Icon(
+        child: const Icon(
           Icons.male,
           color: Colors.blue,
           size: 40.0,

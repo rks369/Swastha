@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:swastha/screens/user_detail.dart';
+import 'package:swastha/screens/picture_detail.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
 
-class CreatePassword extends StatefulWidget {
-  static const String id = 'CreatePassword';
-
-  const CreatePassword({Key? key}) : super(key: key);
+class UserDetail extends StatefulWidget {
+  static const String id = 'UserDetail';
+  const UserDetail({Key? key}) : super(key: key);
 
   @override
-  _CreatePasswordState createState() => _CreatePasswordState();
+  _UserDetailState createState() => _UserDetailState();
 }
 
-class _CreatePasswordState extends State<CreatePassword> {
+class _UserDetailState extends State<UserDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,14 +33,14 @@ class _CreatePasswordState extends State<CreatePassword> {
                 height: 24,
               ),
               const Text(
-                'Create Password',
+                'Your Good Name',
                 style: kHeadingTextStyle,
               ),
               const SizedBox(
                 height: 10,
               ),
               const Text(
-                "Create Your Own Password",
+                "Enter Your Name",
                 style: kSubHeadingTextStyle,
                 textAlign: TextAlign.center,
               ),
@@ -52,15 +51,15 @@ class _CreatePasswordState extends State<CreatePassword> {
                 padding:
                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                 child: TextFormField(
-                  obscureText: true,
+                  keyboardType: TextInputType.name,
                   onChanged: (value) {},
                   decoration: kTextFieldDecoration.copyWith(
                       prefixIcon: const Icon(
                         Icons.smartphone,
                         color: primaryColor,
                       ),
-                      hintText: 'Enter Your Password',
-                      labelText: 'Enter Your Password'),
+                      hintText: 'Enter Your Name',
+                      labelText: 'Enter Your Name'),
                 ),
               ),
               const SizedBox(
@@ -70,7 +69,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                   title: 'Continue',
                   colour: primaryColor,
                   onPressed: () {
-                    Navigator.pushNamed(context, UserDetail.id);
+                    Navigator.pushNamed(context, PictureDetail.id);
                   })
             ],
           ),

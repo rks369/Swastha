@@ -23,21 +23,13 @@ class SlideTile extends StatelessWidget {
         ),
         Text(title,
           textAlign :TextAlign.center,
-          style: const TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        ),),
+          style: kHeadingTextStyle,),
         const SizedBox(
           height: 12,
         ),
         Text(description,
         textAlign: TextAlign.center,
-        style:  const TextStyle(
-          fontSize: 18,
-          fontStyle: FontStyle.italic,
-          color: secondaryColor,
-        ),),
+        style:  kSubHeadingTextStyle ),
         const SizedBox(
           height: 30,
         ),

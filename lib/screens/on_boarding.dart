@@ -3,10 +3,11 @@ import 'package:swastha/models/on_boarding_slider.dart';
 import 'package:swastha/screens/login.dart';
 import 'package:swastha/screens/register.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/round_button.dart';
 import 'package:swastha/widgets/slide_tile.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  static const String id ='OnBoardingScreen';
+  static const String id = 'OnBoardingScreen';
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 description: slides[index].description);
           }),
       bottomSheet: SizedBox(
-        height: 120,
+        height: 150,
         child: Column(
           children: [
             Row(
@@ -54,43 +55,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       : pageIndexIndicator(false)
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: Text(
-                    currentIndex != slides.length - 1 ? 'Next' : 'Get Started'),
-                style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.white,
-                  primary: primaryColor,
-                  onSurface: Colors.grey,
-                  elevation: 20,
-                  minimumSize: const Size(240, 50),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-                onPressed: () {
-                  if(currentIndex!= slides.length-1)
-                    {
-                      pageController.animateToPage(currentIndex + 1,
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.linear);
-                    }
-                  else{
-                      Navigator.pushNamed(context, Register.id);
-                  }
-
-                },
-              ),
+            RoundedButton(
+              title: currentIndex != slides.length - 1 ? 'Next' : 'Get Started',
+              colour: primaryColor,
+              onPressed: () {
+                if (currentIndex != slides.length - 1) {
+                  pageController.animateToPage(currentIndex + 1,
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.linear);
+                } else {
+                  Navigator.pushNamed(context, Register.id);
+                }
+              },
             ),
             GestureDetector(
               child: Text(
                 currentIndex == 0 ? 'Skip' : 'Back',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: primaryColor,
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: kLinkTextStyle,
               ),
               onTap: () {
                 if (currentIndex == 0) {
@@ -107,16 +89,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Already have an Account ?',style: TextStyle(color: secondaryColor),
+                const Text(
+                  'Already have an Account ? ',
+                  style: kNormalTextStyle,
                 ),
-                GestureDetector(child: const Text('Sign in',style: TextStyle(
-                  color: primaryColor,
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold,
-                )),
-                  onTap:(){
+                GestureDetector(
+                  child: const Text('Sign in', style: kLinkTextStyle),
+                  onTap: () {
                     Navigator.pushNamed(context, Login.id);
-                  },)
+                  },
+                )
               ],
             )
           ],
