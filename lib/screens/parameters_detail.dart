@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/card.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class ParameterDetail extends StatefulWidget {
@@ -29,6 +30,26 @@ class _ParameterDetailState extends State<ParameterDetail> {
                 'assets/images/logo.png',
                 width: 100,
                 height: 100,
+              ),
+              Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(child: Row(
+                        children: <Widget>[
+                          Expanded(child: UserCard()),
+                          Expanded(child: UserCard()),
+                        ],
+                      )),
+                      Expanded(child: UserCard()),
+                      Expanded(child: Row(
+                        children: <Widget>[
+                          Expanded(child: UserCard()),
+                          Expanded(child: UserCard()),
+                        ],
+                      )),
+
+                    ],
+                  )
               ),
               const SizedBox(
                 height: 24,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swastha/utils/styles.dart';
 
 
 class UserCard extends StatelessWidget {
@@ -6,17 +7,15 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return GestureDetector(
+      onTap: (){},
       child: Container(
-        child: const Icon(
-          Icons.male,
+        child: Text("Hello"),
+        margin: EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
           color: Colors.blue,
-          size: 40.0,
+          borderRadius: BorderRadius.circular(10.0),
         ),
-            decoration: BoxDecoration(
-          color: Colors.blue,
-              borderRadius: BorderRadius.circular(10.0)
-      ),
       ),
     );
   }
