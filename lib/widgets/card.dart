@@ -10,7 +10,12 @@ class UserCard extends StatelessWidget {
     return GestureDetector(
       onTap: (){},
       child: Container(
-        child: Text("Hello"),
+        child: Container(
+          child: Image.asset(
+            'assets/images/logo.png',
+            width: 100,
+            height: 100,),
+        ),
         margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           color: Colors.blue,
