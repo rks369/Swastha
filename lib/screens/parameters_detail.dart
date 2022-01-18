@@ -33,6 +33,7 @@ class _ParameterDetailState extends State<ParameterDetail> {
               ),
               Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Expanded(child: Row(
                         children: <Widget>[
@@ -62,7 +63,23 @@ class _ParameterDetailState extends State<ParameterDetail> {
                           ),
                         ],
                       )),
-                      Expanded(child: Container(color: Colors.blue,)),
+                      Expanded(
+
+                          child: UserCard(colour: kPrimaryColor,
+                            cardChild: Container(
+                              child: Column(
+                                children: <Widget>[
+                                  Image.asset(
+                                    'assets/images/logo.png',
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                                  RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
+                                ],
+                              ),
+                            ), onPress: () {  },
+                          )
+                      ),
                       Expanded(child: Row(
                         children: <Widget>[
                           Expanded(
