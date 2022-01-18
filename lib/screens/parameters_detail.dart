@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/utils/styles.dart';
@@ -7,6 +8,7 @@ import 'package:swastha/widgets/round_button.dart';
 class ParameterDetail extends StatefulWidget {
   static const String id = 'ParametersDetail';
 
+
   const ParameterDetail({Key? key}) : super(key: key);
 
   @override
@@ -14,6 +16,7 @@ class ParameterDetail extends StatefulWidget {
 }
 
 class _ParameterDetailState extends State<ParameterDetail> {
+   double newvalue =10.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +31,8 @@ class _ParameterDetailState extends State<ParameterDetail> {
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: 50,
-                height: 50,
+                width: 70,
+                height: 70,
               ),
               Expanded(
                   child: Column(
@@ -41,9 +44,16 @@ class _ParameterDetailState extends State<ParameterDetail> {
                               child: UserCard(colour: kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
-                                    children: <Widget>[
-                                      Icon(Icons.male),
-                                      Text("Male")
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const <Widget>[
+                                      Icon(Icons.male
+                                      ,color: Colors.white,
+                                      size: 40.0,),
+                                      Text("Male",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.0
+                                      ),)
                                     ],
                                   ),
                                 ), onPress: () {  },
@@ -53,9 +63,17 @@ class _ParameterDetailState extends State<ParameterDetail> {
                               child: UserCard(colour: kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
-                                    children: <Widget>[
-                                      Icon(Icons.female),
-                                      Text("Female")
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const <Widget>[
+                                      Icon(Icons.female,
+                                      color: Colors.white,
+                                      size: 40.0,),
+
+                                      Text("Female",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.0
+                                      ),)
                                     ],
                                   ),
                                 ), onPress: () {  },
@@ -68,13 +86,33 @@ class _ParameterDetailState extends State<ParameterDetail> {
                           child: UserCard(colour: kPrimaryColor,
                             cardChild: Container(
                               child: Column(
-                                children: <Widget>[
-                                  Image.asset(
-                                    'assets/images/logo.png',
-                                    width: 50,
-                                    height: 50,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:  <Widget>[
+                                const Text(
+                                "Age",
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white
+                                ),
+                                ),
+                                  const Text(
+                                    "150 cm",
+                                    style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.white
+                                    ),
                                   ),
-                                  RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
+                                  Slider(value: 19.0,
+
+                                      min: 1.0,
+                                      max: 20.0,
+                                      onChanged: (value){
+
+                                      }
+
+                                  )
+
+
                                 ],
                               ),
                             ), onPress: () {  },
@@ -86,13 +124,23 @@ class _ParameterDetailState extends State<ParameterDetail> {
                               child: UserCard(colour: kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
-                                    children: <Widget>[
-                                      Image.asset(
-                                        'assets/images/logo.png',
-                                        width: 50,
-                                        height: 50,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const <Widget>[
+                                      Text(
+                                        "Age",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold
+                                        ),
                                       ),
-                                      RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
+                                      Text("18",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white
+                                        ),),
+
+
                                     ],
                                   ),
                                 ), onPress: () {  },
@@ -102,14 +150,23 @@ class _ParameterDetailState extends State<ParameterDetail> {
                               child: UserCard(colour: kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
-                                    children: <Widget>[
-                                      Image.asset(
-                                        'assets/images/logo.png',
-                                        width: 50,
-                                        height: 50,
-                                      ),
-                                      RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
-                                    ],
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const <Widget>[
+                                     Text(
+                                       "Weight",
+                                       style: TextStyle(
+                                         fontSize: 20.0,
+                                         color: Colors.white,
+                                         fontWeight: FontWeight.bold
+                                       ),
+                                     ),
+                                      Text("58",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white
+                                        ),),
+
+                                ],
                                   ),
                                 ), onPress: () {  },
                               )
