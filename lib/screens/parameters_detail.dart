@@ -28,23 +28,75 @@ class _ParameterDetailState extends State<ParameterDetail> {
               ),
               Image.asset(
                 'assets/images/logo.png',
-                width: 100,
-                height: 100,
+                width: 50,
+                height: 50,
               ),
               Expanded(
                   child: Column(
                     children: <Widget>[
                       Expanded(child: Row(
                         children: <Widget>[
-                          Expanded(child: UserCard()),
-                          Expanded(child: UserCard()),
+                          Expanded(
+                              child: UserCard(colour: kPrimaryColor,
+                                cardChild: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Icon(Icons.male),
+                                      Text("Male")
+                                    ],
+                                  ),
+                                ), onPress: () {  },
+                              )
+                          ),
+                          Expanded(
+                              child: UserCard(colour: kPrimaryColor,
+                                cardChild: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Icon(Icons.female),
+                                      Text("Female")
+                                    ],
+                                  ),
+                                ), onPress: () {  },
+                              )
+                          ),
                         ],
                       )),
-                      Expanded(child: UserCard()),
+                      Expanded(child: Container(color: Colors.blue,)),
                       Expanded(child: Row(
                         children: <Widget>[
-                          Expanded(child: UserCard()),
-                          Expanded(child: UserCard()),
+                          Expanded(
+                              child: UserCard(colour: kPrimaryColor,
+                                cardChild: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/images/logo.png',
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                      RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
+                                    ],
+                                  ),
+                                ), onPress: () {  },
+                              )
+                          ),
+                          Expanded(
+                              child: UserCard(colour: kPrimaryColor,
+                                cardChild: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Image.asset(
+                                        'assets/images/logo.png',
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                      RoundedButton(title: "Hey", colour: Colors.blue, onPressed: (){})
+                                    ],
+                                  ),
+                                ), onPress: () {  },
+                              )
+                          ),
                         ],
                       )),
 
