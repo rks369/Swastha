@@ -6,6 +6,8 @@ const Color kPrimaryColor = Color(0xff7A64E4);
 
 const Color kSecondaryColor = Color(0xff59595d);
 
+const Color kActiveSelect= Color(0xff9B99F9);
+
 const TextStyle kHeadingTextStyle = TextStyle(
   fontSize: 36,
   fontWeight: FontWeight.bold,

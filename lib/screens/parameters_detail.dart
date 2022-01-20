@@ -17,6 +17,9 @@ class ParameterDetail extends StatefulWidget {
 
 class _ParameterDetailState extends State<ParameterDetail> {
    double newvalue =10.0;
+   Color activeColor = kPrimaryColor;
+   bool selectedMale = false;
+   bool selectedFemale = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +44,7 @@ class _ParameterDetailState extends State<ParameterDetail> {
                       Expanded(child: Row(
                         children: <Widget>[
                           Expanded(
-                              child: UserCard(colour: kPrimaryColor,
+                              child: UserCard(colour: selectedMale ? activeColor: kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -56,11 +59,18 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                       ),)
                                     ],
                                   ),
-                                ), onPress: () {  },
+                                ), onPress: () {
+                                setState(() {
+                                  activeColor = kActiveSelect;
+                                  selectedMale = true;
+                                  selectedFemale = false;
+                                });
+
+                                },
                               )
                           ),
                           Expanded(
-                              child: UserCard(colour: kPrimaryColor,
+                              child: UserCard(colour: selectedFemale ? activeColor : kPrimaryColor,
                                 cardChild: Container(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +86,14 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                       ),)
                                     ],
                                   ),
-                                ), onPress: () {  },
+                                ), onPress: () {
+                                  setState(() {
+                                    activeColor = kActiveSelect;
+                                    selectedMale = false;
+                                    selectedFemale = true;
+                                  });
+
+                                },
                               )
                           ),
                         ],
