@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/card.dart';
+import 'package:swastha/widgets/circle_button.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class ParameterDetail extends StatefulWidget {
@@ -20,6 +21,8 @@ class _ParameterDetailState extends State<ParameterDetail> {
    Color activeColor = kPrimaryColor;
    bool selectedMale = false;
    bool selectedFemale = false;
+   var AgeValue = 18;
+   var WeightValue = 50;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,8 +145,8 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                 cardChild: Container(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[
-                                      Text(
+                                    children:  <Widget>[
+                                      const Text(
                                         "Age",
                                         style: TextStyle(
                                             fontSize: 20.0,
@@ -151,11 +154,29 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                             fontWeight: FontWeight.bold
                                         ),
                                       ),
-                                      Text("18",
+                                       Text(AgeValue.toString(),
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             color: Colors.white
                                         ),),
+                                      Center(
+                                        child: Row(
+                                                     mainAxisAlignment: MainAxisAlignment.center, 
+                                          children: <Widget>[
+                                             CircleButton(icon: Icons.add, onpressed: (){
+                                               setState(() {
+                                                 AgeValue++;
+                                               });
+                                             }) ,
+                                             CircleButton(icon: Icons.remove, onpressed: (){
+                                               setState(() {
+                                                 AgeValue--;
+                                               });
+                                             })
+                                          ],
+                                        ),
+                                      )
+
 
 
                                     ],
@@ -168,8 +189,8 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                 cardChild: Container(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[
-                                     Text(
+                                    children:  <Widget>[
+                                     const Text(
                                        "Weight",
                                        style: TextStyle(
                                          fontSize: 20.0,
@@ -177,13 +198,32 @@ class _ParameterDetailState extends State<ParameterDetail> {
                                          fontWeight: FontWeight.bold
                                        ),
                                      ),
-                                      Text("58",
-                                        style: TextStyle(
+                                       Text(WeightValue.toString(),
+                                        style: const TextStyle(
                                             fontSize: 20.0,
                                             color: Colors.white
                                         ),),
+                                      Center(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            CircleButton(icon: Icons.add, onpressed: (){
+                                              setState(() {
+                                                    WeightValue++;
+                                              });
+
+                                            }),
+                                            CircleButton(icon: Icons.remove,onpressed: (){
+                                                    setState(() {
+                                                        WeightValue--; 
+                                                    });
+                                            },)
+                                          ],
+                                        ),
+                                      )
 
                                 ],
+
                                   ),
                                 ), onPress: () {  },
                               )
