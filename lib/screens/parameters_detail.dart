@@ -9,7 +9,6 @@ import 'package:swastha/widgets/round_button.dart';
 class ParameterDetail extends StatefulWidget {
   static const String id = 'ParametersDetail';
 
-
   const ParameterDetail({Key? key}) : super(key: key);
 
   @override
@@ -17,12 +16,12 @@ class ParameterDetail extends StatefulWidget {
 }
 
 class _ParameterDetailState extends State<ParameterDetail> {
-   double newvalue =10.0;
-   Color activeColor = kPrimaryColor;
-   bool selectedMale = false;
-   bool selectedFemale = false;
-   var AgeValue = 18;
-   var WeightValue = 50;
+  double newvalue = 10.0;
+  Color activeColor = kPrimaryColor;
+  bool selectedMale = false;
+  bool selectedFemale = false;
+  var ageValue = 18;
+  var weightValue = 50;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,198 +41,182 @@ class _ParameterDetailState extends State<ParameterDetail> {
               ),
               Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                      child: Row(
                     children: <Widget>[
-                      Expanded(child: Row(
-                        children: <Widget>[
-                          Expanded(
-                              child: UserCard(colour: selectedMale ? activeColor: kPrimaryColor,
-                                cardChild: Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[
-                                      Icon(Icons.male
-                                      ,color: Colors.white,
-                                      size: 40.0,),
-                                      Text("Male",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0
-                                      ),)
-                                    ],
-                                  ),
-                                ), onPress: () {
-                                setState(() {
-                                  activeColor = kActiveSelect;
-                                  selectedMale = true;
-                                  selectedFemale = false;
-                                });
-
-                                },
-                              )
-                          ),
-                          Expanded(
-                              child: UserCard(colour: selectedFemale ? activeColor : kPrimaryColor,
-                                cardChild: Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[
-                                      Icon(Icons.female,
-                                      color: Colors.white,
-                                      size: 40.0,),
-
-                                      Text("Female",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0
-                                      ),)
-                                    ],
-                                  ),
-                                ), onPress: () {
-                                  setState(() {
-                                    activeColor = kActiveSelect;
-                                    selectedMale = false;
-                                    selectedFemale = true;
-                                  });
-
-                                },
-                              )
-                          ),
-                        ],
+                      Expanded(
+                          child: UserCard(
+                        colour: selectedMale ? activeColor : kPrimaryColor,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.male,
+                              color: Colors.white,
+                              size: 40.0,
+                            ),
+                            Text(
+                              "Male",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            )
+                          ],
+                        ),
+                        onPress: () {
+                          setState(() {
+                            activeColor = kActiveSelect;
+                            selectedMale = true;
+                            selectedFemale = false;
+                          });
+                        },
                       )),
                       Expanded(
-
-                          child: UserCard(colour: kPrimaryColor,
-                            cardChild: Container(
-                              child: Column(
+                          child: UserCard(
+                        colour: selectedFemale ? activeColor : kPrimaryColor,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.female,
+                              color: Colors.white,
+                              size: 40.0,
+                            ),
+                            Text(
+                              "Female",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            )
+                          ],
+                        ),
+                        onPress: () {
+                          setState(() {
+                            activeColor = kActiveSelect;
+                            selectedMale = false;
+                            selectedFemale = true;
+                          });
+                        },
+                      )),
+                    ],
+                  )),
+                  Expanded(
+                      child: UserCard(
+                    colour: kPrimaryColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          "Age",
+                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                        ),
+                        const Text(
+                          "150 cm",
+                          style: TextStyle(fontSize: 15.0, color: Colors.white),
+                        ),
+                        Slider(
+                            value: 19.0,
+                            min: 1.0,
+                            max: 20.0,
+                            onChanged: (value) {})
+                      ],
+                    ),
+                    onPress: () {},
+                  )),
+                  Expanded(
+                      child: Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: UserCard(
+                        colour: kPrimaryColor,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text(
+                              "Age",
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              ageValue.toString(),
+                              style: const TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                            Center(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children:  <Widget>[
-                                const Text(
-                                "Age",
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.white
-                                ),
-                                ),
-                                  const Text(
-                                    "150 cm",
-                                    style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                  Slider(value: 19.0,
-
-                                      min: 1.0,
-                                      max: 20.0,
-                                      onChanged: (value){
-
-                                      }
-
-                                  )
-
-
+                                children: <Widget>[
+                                  CircleButton(
+                                      icon: Icons.add,
+                                      onpressed: () {
+                                        setState(() {
+                                          ageValue++;
+                                        });
+                                      }),
+                                  CircleButton(
+                                      icon: Icons.remove,
+                                      onpressed: () {
+                                        setState(() {
+                                          ageValue--;
+                                        });
+                                      })
                                 ],
                               ),
-                            ), onPress: () {  },
-                          )
-                      ),
-                      Expanded(child: Row(
-                        children: <Widget>[
-                          Expanded(
-                              child: UserCard(colour: kPrimaryColor,
-                                cardChild: Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children:  <Widget>[
-                                      const Text(
-                                        "Age",
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold
-                                        ),
-                                      ),
-                                       Text(AgeValue.toString(),
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            color: Colors.white
-                                        ),),
-                                      Center(
-                                        child: Row(
-                                                     mainAxisAlignment: MainAxisAlignment.center, 
-                                          children: <Widget>[
-                                             CircleButton(icon: Icons.add, onpressed: (){
-                                               setState(() {
-                                                 AgeValue++;
-                                               });
-                                             }) ,
-                                             CircleButton(icon: Icons.remove, onpressed: (){
-                                               setState(() {
-                                                 AgeValue--;
-                                               });
-                                             })
-                                          ],
-                                        ),
-                                      )
-
-
-
-                                    ],
-                                  ),
-                                ), onPress: () {  },
-                              )
-                          ),
-                          Expanded(
-                              child: UserCard(colour: kPrimaryColor,
-                                cardChild: Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children:  <Widget>[
-                                     const Text(
-                                       "Weight",
-                                       style: TextStyle(
-                                         fontSize: 20.0,
-                                         color: Colors.white,
-                                         fontWeight: FontWeight.bold
-                                       ),
-                                     ),
-                                       Text(WeightValue.toString(),
-                                        style: const TextStyle(
-                                            fontSize: 20.0,
-                                            color: Colors.white
-                                        ),),
-                                      Center(
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            CircleButton(icon: Icons.add, onpressed: (){
-                                              setState(() {
-                                                    WeightValue++;
-                                              });
-
-                                            }),
-                                            CircleButton(icon: Icons.remove,onpressed: (){
-                                                    setState(() {
-                                                        WeightValue--; 
-                                                    });
-                                            },)
-                                          ],
-                                        ),
-                                      )
-
-                                ],
-
-                                  ),
-                                ), onPress: () {  },
-                              )
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
+                        onPress: () {},
                       )),
-
+                      Expanded(
+                          child: UserCard(
+                        colour: kPrimaryColor,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text(
+                              "Weight",
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              weightValue.toString(),
+                              style: const TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                            Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  CircleButton(
+                                      icon: Icons.add,
+                                      onpressed: () {
+                                        setState(() {
+                                          weightValue++;
+                                        });
+                                      }),
+                                  CircleButton(
+                                    icon: Icons.remove,
+                                    onpressed: () {
+                                      setState(() {
+                                        weightValue--;
+                                      });
+                                    },
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        onPress: () {},
+                      )),
                     ],
-                  )
-              ),
+                  )),
+                ],
+              )),
               const SizedBox(
                 height: 24,
               ),
