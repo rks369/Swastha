@@ -18,81 +18,83 @@ class _VerifyOTPState extends State<VerifyOTP> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const Align(alignment: Alignment.topLeft, child: BackButton()),
-              const SizedBox(
-                height: 18,
-              ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-                height: 100,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              const Text(
-                'Verification',
-                style: kHeadingTextStyle,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Enter your OTP code number",
-                style: kSubHeadingTextStyle,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 28,
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Align(alignment: Alignment.topLeft, child: BackButton()),
+                const SizedBox(
+                  height: 18,
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _textFieldOTP(first: true, last: false),
-                        _textFieldOTP(first: false, last: false),
-                        _textFieldOTP(first: false, last: false),
-                        _textFieldOTP(first: false, last: true),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 22,
-                    ),
-                    RoundedButton(
-                        title: "Verify",
-                        colour: kPrimaryColor,
-                        onPressed: () {
-                          Navigator.pushNamed(context, CreatePassword.id);
-                        }),
-                  ],
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 100,
+                  height: 100,
                 ),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              const Text(
-                "Didn't you receive any code?",
-                style: kNormalTextStyle,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              const Text(
-                "Resend New Code",
-                style: kLinkTextStyle,
-                textAlign: TextAlign.center,
-              ),
-            ],
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Verification',
+                  style: kHeadingTextStyle,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Enter your OTP code number",
+                  style: kSubHeadingTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _textFieldOTP(first: true, last: false),
+                          _textFieldOTP(first: false, last: false),
+                          _textFieldOTP(first: false, last: false),
+                          _textFieldOTP(first: false, last: true),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 22,
+                      ),
+                      RoundedButton(
+                          title: "Verify",
+                          colour: kPrimaryColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, CreatePassword.id);
+                          }),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                const Text(
+                  "Didn't you receive any code?",
+                  style: kNormalTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                const Text(
+                  "Resend New Code",
+                  style: kLinkTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
