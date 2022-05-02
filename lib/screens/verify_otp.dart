@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swastha/Bloc/auth_cubit.dart';
+import 'package:swastha/Bloc/auth_state.dart';
 import 'package:swastha/screens/create_password.dart';
+import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
 
@@ -14,6 +18,7 @@ class VerifyOTP extends StatefulWidget {
 class _VerifyOTPState extends State<VerifyOTP> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController otp = TextEditingController();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -48,37 +53,26 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 const SizedBox(
                   height: 28,
                 ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _textFieldOTP(first: true, last: false),
-                          _textFieldOTP(first: false, last: false),
-                          _textFieldOTP(first: false, last: false),
-                          _textFieldOTP(first: false, last: true),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      RoundedButton(
-                          title: "Verify",
-                          colour: kPrimaryColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, CreatePassword.id);
-                          }),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 60),
+                  child: TextFormField(
+                    maxLength: 6,
+                    keyboardType: TextInputType.phone,
+                    decoration: kTextFieldDecoration.copyWith(
+                        counter: const Offstage()),
                   ),
                 ),
                 const SizedBox(
                   height: 18,
+                ),
+                BlocConsumer<AuthCubit, AuthState>(
+                  listener: ((context, state) {}),
+                  builder: ((context, state) {
+                    return RoundedButton(
+                        title: "Verify",
+                        colour: kPrimaryColor,
+                        onPressed: () {});
+                  }),
                 ),
                 const Text(
                   "Didn't you receive any code?",
@@ -103,11 +97,11 @@ class _VerifyOTPState extends State<VerifyOTP> {
 
   Widget _textFieldOTP({required bool first, required bool last}) {
     return SizedBox(
-      height: 85,
+      height: 50,
       child: AspectRatio(
         aspectRatio: 1.0,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(1.0),
           child: TextField(
             autofocus: true,
             onChanged: (value) {
@@ -121,7 +115,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
             showCursor: false,
             readOnly: false,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             keyboardType: TextInputType.number,
             maxLength: 1,
             decoration: kTextFieldDecoration.copyWith(
