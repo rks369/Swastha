@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: MaterialApp(
-        initialRoute: VerifyOTP.id,
+        initialRoute: OnBoardingScreen.id,
         routes: {
           OnBoardingScreen.id: (context) => const OnBoardingScreen(),
           Login.id: (context) => const Login(),

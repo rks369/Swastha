@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/Bloc/auth_state.dart';
 import 'package:swastha/screens/create_password.dart';
+import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -66,12 +67,27 @@ class _VerifyOTPState extends State<VerifyOTP> {
                   height: 18,
                 ),
                 BlocConsumer<AuthCubit, AuthState>(
-                  listener: ((context, state) {}),
+                  listener: ((context, state) {
+                    if (state is AuthLoggedInState) {
+                      changeScreenReplacement(context, const DashBoard());
+                    } else if (state is AuthErrorState) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Some Error Occured')));
+                    }
+                  }),
                   builder: ((context, state) {
+                    if (state is AuthLoadingState) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                     return RoundedButton(
                         title: "Verify",
                         colour: kPrimaryColor,
-                        onPressed: () {});
+                        onPressed: () {
+                          BlocProvider.of<AuthCubit>(context)
+                              .verifyOTP(otp.text);
+                        });
                   }),
                 ),
                 const Text(
