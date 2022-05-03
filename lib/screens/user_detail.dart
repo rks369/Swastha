@@ -6,6 +6,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/screens/parameters_detail.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -115,27 +116,17 @@ class _UserDetailState extends State<UserDetail> {
                         labelText: 'Enter Your Name'),
                   ),
                 ),
-                BlocConsumer<AuthCubit, authstate>(
-                  listener: (context, state) {
-                    if (state == authstate.loggedIn) {
-                      changeScreenReplacement(context, const DashBoard());
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state == authstate.loading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return RoundedButton(
-                        title: 'Continue',
-                        colour: kPrimaryColor,
-                        onPressed: () {
-                          BlocProvider.of<AuthCubit>(context)
-                              .register(name.text);
-                        });
-                  },
-                ),
+                RoundedButton(
+                    title: 'Continue',
+                    colour: kPrimaryColor,
+                    onPressed: () {
+                      if (image != null) {
+                        changeScreen(
+                            context,
+                            ParameterDetail(
+                                name: name.text, profileURL: image!.path));
+                      }
+                    }),
               ],
             ),
           ),

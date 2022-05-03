@@ -36,7 +36,7 @@ class DashBoard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(authCubit.user!.phoneNumber.toString()),
+              Text(authCubit.userModel.toJSON().toString()),
             ],
           ),
         ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swastha/Bloc/auth_cubit.dart';
+import 'package:swastha/models/user_model.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
@@ -7,7 +10,11 @@ import 'package:swastha/widgets/circle_button.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class ParameterDetail extends StatefulWidget {
-  const ParameterDetail({Key? key}) : super(key: key);
+  final String name;
+  final String profileURL;
+  const ParameterDetail(
+      {Key? key, required this.name, required this.profileURL})
+      : super(key: key);
 
   @override
   _ParameterDetailState createState() => _ParameterDetailState();
@@ -218,12 +225,37 @@ class _ParameterDetailState extends State<ParameterDetail> {
               const SizedBox(
                 height: 24,
               ),
-              RoundedButton(
-                  title: 'Continue',
-                  colour: kPrimaryColor,
-                  onPressed: () {
-                    changeScreen(context, const DashBoard());
-                  })
+              BlocConsumer<AuthCubit, authstate>(
+                listener: (context, state) {
+                  if (state == authstate.loggedIn) {
+                    changeScreenReplacement(context, const DashBoard());
+                  }
+                },
+                builder: (context, state) {
+                  if (state == authstate.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return RoundedButton(
+                      title: 'Continue',
+                      colour: kPrimaryColor,
+                      onPressed: () {
+                        final user = BlocProvider.of<AuthCubit>(context);
+                        UserModel userModel = UserModel(
+                            user.user!.uid,
+                            user.user!.phoneNumber.toString(),
+                            widget.name,
+                            widget.profileURL,
+                            'male',
+                            '176 ',
+                            '45',
+                            '21',
+                            '19');
+                        user.register(userModel);
+                      });
+                },
+              )
             ],
           ),
         ),

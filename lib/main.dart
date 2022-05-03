@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           }),
           builder: (context, state) {
             if (state == authstate.loggedIn) {
-              return const UserDetail();
+              return const DashBoard();
             } else if (state == authstate.loggedOut) {
               return const Register();
             } else if (state == authstate.unRegistered) {

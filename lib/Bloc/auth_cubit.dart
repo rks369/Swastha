@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swastha/models/user_model.dart';
 import 'package:swastha/screens/user_detail.dart';
 import 'package:swastha/services/change_screen.dart';
 
@@ -23,15 +24,22 @@ class AuthCubit extends Cubit<authstate> {
   String? error;
   User? user;
 
+  late UserModel userModel;
+
   AuthCubit() : super(authstate.init) {
     user = _auth.currentUser;
     if (user != null) {
-      _firestore.collection('users').doc(user!.uid).get().then((value) => {
-            if (value.exists)
-              {emit(authstate.loggedIn)}
-            else
-              {emit(authstate.unRegistered)}
-          });
+      _firestore.collection('users').doc(user!.uid).get().then((value) {
+        if (value.exists) {
+          final data = value.data();
+
+          userModel = userModelFromJSON(data!);
+
+          emit(authstate.loggedIn);
+        } else {
+          emit(authstate.unRegistered);
+        }
+      });
     } else {
       emit(authstate.loggedOut);
     }
@@ -67,12 +75,13 @@ class AuthCubit extends Cubit<authstate> {
     signInWithPhone(credential);
   }
 
-  void register(String name) {
-    _firestore
+  void register(UserModel userModel) async {
+    this.userModel = userModel;
+    await _firestore
         .collection('users')
         .doc(user!.uid)
-        .set({'name': name, 'phone': user!.phoneNumber, 'uid': user!.uid}).then(
-            (value) => {emit(authstate.loggedIn)});
+        .set(userModel.toJSON())
+        .then((value) => {emit(authstate.loggedIn)});
   }
 
   void signInWithPhone(PhoneAuthCredential credential) async {
