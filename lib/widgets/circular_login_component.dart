@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CircularLoginOption extends StatelessWidget {
-  const CircularLoginOption({Key? key, required this.icon, required this.onTap}):super(key: key);
+  const CircularLoginOption({Key? key, required this.icon, required this.onTap})
+      : super(key: key);
 
   final Image icon;
   final VoidCallback onTap;
@@ -17,15 +17,10 @@ class CircularLoginOption extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                image: DecorationImage(
-
-                    fit: BoxFit.scaleDown,
-                    image: icon.image
-                )
-              )
-          ),
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      fit: BoxFit.scaleDown, image: icon.image))),
         ),
       ),
     );

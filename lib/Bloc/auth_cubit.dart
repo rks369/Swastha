@@ -1,34 +1,57 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swastha/Bloc/auth_state.dart';
+import 'package:swastha/screens/user_detail.dart';
+import 'package:swastha/services/change_screen.dart';
 
-class AuthCubit extends Cubit<AuthState> {
+enum authstate {
+  init,
+  loading,
+  otpSend,
+  otpVerified,
+  registered,
+  unRegistered,
+  loggedIn,
+  loggedOut,
+  error
+}
+
+class AuthCubit extends Cubit<authstate> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  AuthCubit() : super(AuthInitialState()) {
-    User? currentUser = _auth.currentUser;
-    if (currentUser != null) {
-      emit(AuthLoggedInState(currentUser));
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  String? error;
+  User? user;
+
+  AuthCubit() : super(authstate.init) {
+    user = _auth.currentUser;
+    if (user != null) {
+      _firestore.collection('users').doc(user!.uid).get().then((value) => {
+            if (value.exists)
+              {emit(authstate.loggedIn)}
+            else
+              {emit(authstate.unRegistered)}
+          });
     } else {
-      emit(AuthLoggedOutState());
+      emit(authstate.loggedOut);
     }
   }
 
   String? _verificationId;
 
   void sendOTP(String phoneNumber) async {
-    emit(AuthLoadingState());
+    emit(authstate.loading);
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
-        emit(AuthCodeSentState());
+        emit(authstate.otpSend);
       },
       verificationCompleted: (phoneAuthCredential) {
         signInWithPhone(phoneAuthCredential);
       },
       verificationFailed: (error) {
-        emit(AuthErrorState(error.message.toString()));
+        emit(authstate.error);
       },
       codeAutoRetrievalTimeout: (verificationId) {
         _verificationId = verificationId;
@@ -37,26 +60,42 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void verifyOTP(String otp) async {
-    emit(AuthLoadingState());
+    emit(authstate.loading);
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: _verificationId!, smsCode: otp);
+
     signInWithPhone(credential);
+  }
+
+  void register(String name) {
+    _firestore
+        .collection('users')
+        .doc(user!.uid)
+        .set({'name': name, 'phone': user!.phoneNumber, 'uid': user!.uid}).then(
+            (value) => {emit(authstate.loggedIn)});
   }
 
   void signInWithPhone(PhoneAuthCredential credential) async {
     try {
-      UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      if (userCredential.user != null) {
-        emit(AuthLoggedInState(userCredential.user!));
+      user = await _auth
+          .signInWithCredential(credential)
+          .then((value) => value.user);
+
+      if (user != null) {
+        _firestore.collection('users').doc(user!.uid).get().then((value) => {
+              if (value.exists)
+                {emit(authstate.loggedIn)}
+              else
+                {emit(authstate.unRegistered)}
+            });
       }
-    } on FirebaseAuthException catch (ex) {
-      emit(AuthErrorState(ex.message.toString()));
+    } on FirebaseAuthException catch (e) {
+      error = e.toString();
     }
   }
 
   void logOut() async {
     await _auth.signOut();
-    emit(AuthLoggedOutState());
+    emit(authstate.loggedOut);
   }
 }

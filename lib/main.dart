@@ -2,15 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/create_password.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/screens/login.dart';
-import 'package:swastha/screens/user_detail.dart';
-import 'package:swastha/screens/on_boarding.dart';
-import 'package:swastha/screens/parameters_detail.dart';
-import 'package:swastha/screens/picture_detail.dart';
 import 'package:swastha/screens/register.dart';
-import 'package:swastha/screens/verify_otp.dart';
+import 'package:swastha/screens/user_detail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,19 +21,27 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: MaterialApp(
-        initialRoute: OnBoardingScreen.id,
-        routes: {
-          OnBoardingScreen.id: (context) => const OnBoardingScreen(),
-          Login.id: (context) => const Login(),
-          Register.id: (context) => const Register(),
-          VerifyOTP.id: (context) => const VerifyOTP(),
-          CreatePassword.id: (context) => const CreatePassword(),
-          UserDetail.id: (context) => const UserDetail(),
-          PictureDetail.id: (context) => const PictureDetail(),
-          ParameterDetail.id: (context) => const ParameterDetail(),
-          DashBoard.id: (context) => const DashBoard(),
-        },
         debugShowCheckedModeBanner: false,
+        home: BlocBuilder<AuthCubit, authstate>(
+          buildWhen: ((previous, current) {
+            return previous == authstate.init;
+          }),
+          builder: (context, state) {
+            if (state == authstate.loggedIn) {
+              return const UserDetail();
+            } else if (state == authstate.loggedOut) {
+              return const Register();
+            } else if (state == authstate.unRegistered) {
+              return const UserDetail();
+            } else {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

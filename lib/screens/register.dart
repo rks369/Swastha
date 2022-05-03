@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/Bloc/auth_state.dart';
 import 'package:swastha/screens/user_detail.dart';
 import 'package:swastha/screens/verify_otp.dart';
 import 'package:swastha/services/change_screen.dart';
@@ -10,8 +9,6 @@ import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class Register extends StatefulWidget {
-  static const String id = 'Register';
-
   const Register({Key? key}) : super(key: key);
 
   @override
@@ -87,42 +84,45 @@ class _RegisterState extends State<Register> {
                     CircularLoginOption(
                       icon: Image.asset('assets/images/google.png'),
                       onTap: () {
-                        Navigator.pushNamed(context, UserDetail.id);
+                        changeScreen(context, const UserDetail());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/fb.jpg'),
                       onTap: () {
-                        Navigator.pushNamed(context, UserDetail.id);
+                        changeScreen(context, const UserDetail());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/twitter.png'),
                       onTap: () {
-                        Navigator.pushNamed(context, UserDetail.id);
+                        changeScreen(context, const UserDetail());
                       },
                     )
                   ],
                 ),
               ),
-              BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
-                if (state is AuthCodeSentState) {
-                  changeScreenReplacement(context, VerifyOTP());
-                }
-              }, builder: ((context, state) {
-                if (state is AuthLoadingState) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return RoundedButton(
-                    title: 'Continue',
-                    colour: kPrimaryColor,
-                    onPressed: () {
-                      String phonenum = "+91" + phone.text;
-                      BlocProvider.of<AuthCubit>(context).sendOTP(phonenum);
-                    });
-              }))
+              BlocConsumer<AuthCubit, authstate>(
+                listener: (context, state) {
+                  if (state == authstate.otpSend) {
+                    changeScreenReplacement(context, const VerifyOTP());
+                  }
+                },
+                builder: (context, state) {
+                  if (state == authstate.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return RoundedButton(
+                      title: 'Continue',
+                      colour: kPrimaryColor,
+                      onPressed: () {
+                        String phonenum = "+91" + phone.text;
+                        BlocProvider.of<AuthCubit>(context).sendOTP(phonenum);
+                      });
+                },
+              ),
             ],
           ),
         ),

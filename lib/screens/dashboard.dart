@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swastha/Bloc/auth_cubit.dart';
+import 'package:swastha/screens/register.dart';
+import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 
 class DashBoard extends StatelessWidget {
-  static const String id = 'DashBoard';
-
   const DashBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final authCubit = BlocProvider.of<AuthCubit>(context);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -32,9 +36,32 @@ class DashBoard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              Text(authCubit.user!.phoneNumber.toString()),
             ],
           ),
         ),
+      ),
+      floatingActionButton: BlocConsumer<AuthCubit, authstate>(
+        listener: (context, state) {
+          if (state == authstate.loggedIn) {
+            changeScreenReplacement(context, const DashBoard());
+          } else if (state == authstate.loggedOut) {
+            changeScreenReplacement(context, const Register());
+          }
+        },
+        builder: (context, state) {
+          if (state == authstate.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return FloatingActionButton(
+            child: const Icon(Icons.logout),
+            onPressed: () {
+              authCubit.logOut();
+            },
+          );
+        },
       ),
     );
   }

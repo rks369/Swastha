@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class Login extends StatelessWidget {
-  static const String id = 'Login';
-
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -79,19 +77,19 @@ class Login extends StatelessWidget {
                     CircularLoginOption(
                       icon: Image.asset('assets/images/google.png'),
                       onTap: () {
-                        Navigator.pushNamed(context, DashBoard.id);
+                        changeScreen(context, const DashBoard());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/fb.jpg'),
                       onTap: () {
-                        Navigator.pushNamed(context, DashBoard.id);
+                        changeScreen(context, const DashBoard());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/twitter.png'),
                       onTap: () {
-                        Navigator.pushNamed(context, DashBoard.id);
+                        changeScreen(context, const DashBoard());
                       },
                     )
                   ],
@@ -101,7 +99,7 @@ class Login extends StatelessWidget {
                   title: 'Continue',
                   colour: kPrimaryColor,
                   onPressed: () {
-                    Navigator.pushNamed(context, DashBoard.id);
+                    changeScreen(context, const DashBoard());
                   })
             ],
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/Bloc/auth_state.dart';
-import 'package:swastha/screens/create_password.dart';
 import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/screens/register.dart';
+import 'package:swastha/screens/user_detail.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -66,18 +66,23 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 const SizedBox(
                   height: 18,
                 ),
-                BlocConsumer<AuthCubit, AuthState>(
+                BlocConsumer<AuthCubit, authstate>(
                   listener: ((context, state) {
-                    if (state is AuthLoggedInState) {
+                    if (state == authstate.loggedIn) {
                       changeScreenReplacement(context, const DashBoard());
-                    } else if (state is AuthErrorState) {
+                    } else if (state == authstate.unRegistered) {
+                      changeScreenReplacement(context, const UserDetail());
+                    } else if (state == authstate.error) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Some Error Occured')));
+                        const SnackBar(
+                          content: Text('Some Error Occured'),
+                        ),
+                      );
                     }
                   }),
                   builder: ((context, state) {
-                    if (state is AuthLoadingState) {
-                      return Center(
+                    if (state == authstate.loading) {
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -104,38 +109,6 @@ class _VerifyOTPState extends State<VerifyOTP> {
                   textAlign: TextAlign.center,
                 ),
               ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _textFieldOTP({required bool first, required bool last}) {
-    return SizedBox(
-      height: 50,
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: TextField(
-            autofocus: true,
-            onChanged: (value) {
-              if (value.length == 1 && last == false) {
-                FocusScope.of(context).nextFocus();
-              }
-              if (value.isEmpty && first == false) {
-                FocusScope.of(context).previousFocus();
-              }
-            },
-            showCursor: false,
-            readOnly: false,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            keyboardType: TextInputType.number,
-            maxLength: 1,
-            decoration: kTextFieldDecoration.copyWith(
-              counter: const Offstage(),
             ),
           ),
         ),

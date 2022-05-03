@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/card.dart';
 import 'package:swastha/widgets/circle_button.dart';
 import 'package:swastha/widgets/round_button.dart';
 
 class ParameterDetail extends StatefulWidget {
-  static const String id = 'ParametersDetail';
-
   const ParameterDetail({Key? key}) : super(key: key);
 
   @override
@@ -224,7 +222,7 @@ class _ParameterDetailState extends State<ParameterDetail> {
                   title: 'Continue',
                   colour: kPrimaryColor,
                   onPressed: () {
-                    Navigator.pushNamed(context, DashBoard.id);
+                    changeScreen(context, const DashBoard());
                   })
             ],
           ),
