@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/dashboard.dart';
-import 'package:swastha/screens/login.dart';
 import 'package:swastha/screens/register.dart';
 import 'package:swastha/screens/user_detail.dart';
 

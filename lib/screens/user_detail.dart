@@ -34,10 +34,9 @@ class _UserDetailState extends State<UserDetail> {
 
     final imageTemporary = File(image.path);
     final img = await ImageCropper().cropImage(
+      cropStyle: CropStyle.circle,
       sourcePath: imageTemporary.path,
       aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
-      aspectRatioPresets: [CropAspectRatioPreset.square],
-      compressQuality: 70,
       compressFormat: ImageCompressFormat.jpg,
     );
     setState(() {
@@ -49,89 +48,96 @@ class _UserDetailState extends State<UserDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const Align(alignment: Alignment.topLeft, child: BackButton()),
-              const SizedBox(
-                height: 18,
-              ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-                height: 100,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              const Text(
-                'Complete Registeration',
-                style: kHeadingTextStyle,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Complete Your Profile",
-                style: kSubHeadingTextStyle,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 28,
-              ),
-              InkWell(
-                onTap: () => {pickImage()},
-                child: image == null
-                    ? CircleAvatar(
-                        radius: 100,
-                        backgroundColor: kWhite,
-                        child: Icon(
-                          Icons.photo_camera,
-                          color: kPrimaryColor,
-                          size: 100,
-                        ),
-                      )
-                    : CircleAvatar(
-                        radius: 100, backgroundImage: Image.file(image!).image),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                child: TextFormField(
-                  controller: name,
-                  keyboardType: TextInputType.name,
-                  onChanged: (value) {},
-                  decoration: kTextFieldDecoration.copyWith(
-                      prefixIcon: const Icon(
-                        Icons.person,
-                        color: kPrimaryColor,
-                      ),
-                      hintText: 'Enter Your Name',
-                      labelText: 'Enter Your Name'),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const Align(alignment: Alignment.topLeft, child: BackButton()),
+                const SizedBox(
+                  height: 18,
                 ),
-              ),
-              BlocConsumer<AuthCubit, authstate>(
-                listener: (context, state) {
-                  if (state == authstate.loggedIn) {
-                    changeScreenReplacement(context, const DashBoard());
-                  }
-                },
-                builder: (context, state) {
-                  if (state == authstate.loading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return RoundedButton(
-                      title: 'Continue',
-                      colour: kPrimaryColor,
-                      onPressed: () {
-                        BlocProvider.of<AuthCubit>(context).register(name.text);
-                      });
-                },
-              ),
-            ],
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 100,
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Complete Registeration',
+                  style: kHeadingTextStyle,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Complete Your Profile",
+                  style: kSubHeadingTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                InkWell(
+                  onTap: () => {pickImage()},
+                  child: image == null
+                      ? const CircleAvatar(
+                          radius: 100,
+                          backgroundColor: kWhite,
+                          child: Icon(
+                            Icons.photo_camera,
+                            color: kPrimaryColor,
+                            size: 100,
+                          ),
+                        )
+                      : CircleAvatar(
+                          radius: 100,
+                          backgroundImage: Image.file(image!).image),
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 5.0, horizontal: 15.0),
+                  child: TextFormField(
+                    controller: name,
+                    keyboardType: TextInputType.name,
+                    onChanged: (value) {},
+                    decoration: kTextFieldDecoration.copyWith(
+                        prefixIcon: const Icon(
+                          Icons.person,
+                          color: kPrimaryColor,
+                        ),
+                        hintText: 'Enter Your Name',
+                        labelText: 'Enter Your Name'),
+                  ),
+                ),
+                BlocConsumer<AuthCubit, authstate>(
+                  listener: (context, state) {
+                    if (state == authstate.loggedIn) {
+                      changeScreenReplacement(context, const DashBoard());
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state == authstate.loading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return RoundedButton(
+                        title: 'Continue',
+                        colour: kPrimaryColor,
+                        onPressed: () {
+                          BlocProvider.of<AuthCubit>(context)
+                              .register(name.text);
+                        });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
