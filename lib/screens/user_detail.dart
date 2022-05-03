@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/dashboard.dart';
 import 'package:swastha/services/change_screen.dart';
@@ -15,6 +19,32 @@ class UserDetail extends StatefulWidget {
 
 class _UserDetailState extends State<UserDetail> {
   final TextEditingController name = TextEditingController();
+  File? image;
+  AndroidUiSettings androidUiSettingsLocked() => AndroidUiSettings(
+        toolbarTitle: 'Crop Image',
+        toolbarColor: Colors.red,
+        toolbarWidgetColor: Colors.white,
+        hideBottomControls: true,
+      );
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    }
+
+    final imageTemporary = File(image.path);
+    final img = await ImageCropper().cropImage(
+      sourcePath: imageTemporary.path,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatioPresets: [CropAspectRatioPreset.square],
+      compressQuality: 70,
+      compressFormat: ImageCompressFormat.jpg,
+    );
+    setState(() {
+      this.image = File(img!.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,16 +81,19 @@ class _UserDetailState extends State<UserDetail> {
                 height: 28,
               ),
               InkWell(
-                onTap: () => {},
-                child: const CircleAvatar(
-                  radius: 100,
-                  backgroundColor: kWhite,
-                  child: Icon(
-                    Icons.photo_camera,
-                    color: kPrimaryColor,
-                    size: 100,
-                  ),
-                ),
+                onTap: () => {pickImage()},
+                child: image == null
+                    ? CircleAvatar(
+                        radius: 100,
+                        backgroundColor: kWhite,
+                        child: Icon(
+                          Icons.photo_camera,
+                          color: kPrimaryColor,
+                          size: 100,
+                        ),
+                      )
+                    : CircleAvatar(
+                        radius: 100, backgroundImage: Image.file(image!).image),
               ),
               Padding(
                 padding:
