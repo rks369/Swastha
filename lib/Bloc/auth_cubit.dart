@@ -91,12 +91,16 @@ class AuthCubit extends Cubit<authstate> {
           .then((value) => value.user);
 
       if (user != null) {
-        _firestore.collection('users').doc(user!.uid).get().then((value) => {
-              if (value.exists)
-                {emit(authstate.loggedIn)}
-              else
-                {emit(authstate.unRegistered)}
-            });
+        _firestore.collection('users').doc(user!.uid).get().then((value) {
+          if (value.exists) {
+            final data = value.data();
+
+            userModel = userModelFromJSON(data!);
+            emit(authstate.loggedIn);
+          } else {
+            emit(authstate.unRegistered);
+          }
+        });
       }
     } on FirebaseAuthException catch (e) {
       error = e.toString();
