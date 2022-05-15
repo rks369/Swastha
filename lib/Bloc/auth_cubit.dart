@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/models/user_model.dart';
+import 'package:swastha/screens/user_detail.dart';
+import 'package:swastha/services/change_screen.dart';
 
 enum authstate {
   init,

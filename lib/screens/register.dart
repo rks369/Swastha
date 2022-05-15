@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/authentication/user_detail.dart';
-import 'package:swastha/screens/authentication/verify_otp.dart';
+import 'package:swastha/screens/user_detail.dart';
+import 'package:swastha/screens/verify_otp.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';

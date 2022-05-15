@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swastha/models/on_boarding_slider.dart';
-import 'package:swastha/screens/authentication/login.dart';
-import 'package:swastha/screens/authentication/register.dart';
+import 'package:swastha/screens/login.dart';
+import 'package:swastha/screens/register.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -65,8 +65,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.linear);
                 } else {
-                  changeScreen(context, const Register());
-                }
+changeScreen(context, const Register());                }
               },
             ),
             GestureDetector(
