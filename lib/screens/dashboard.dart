@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/register.dart';
+import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 

@@ -1,12 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/dashboard.dart';
-import 'package:swastha/screens/parameters_detail.dart';
+import 'package:swastha/screens/authentication/parameters_detail.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';

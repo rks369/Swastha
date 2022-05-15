@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/dashboard.dart';
-import 'package:swastha/screens/register.dart';
-import 'package:swastha/screens/user_detail.dart';
+import 'package:swastha/screens/authentication/on_boarding.dart';
+import 'package:swastha/screens/authentication/register.dart';
+import 'package:swastha/screens/authentication/user_detail.dart';
+import 'package:swastha/screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +29,9 @@ class MyApp extends StatelessWidget {
           }),
           builder: (context, state) {
             if (state == authstate.loggedIn) {
-              return const DashBoard();
+              return const Home();
             } else if (state == authstate.loggedOut) {
-              return const Register();
+              return const OnBoardingScreen();
             } else if (state == authstate.unRegistered) {
               return const UserDetail();
             } else {
