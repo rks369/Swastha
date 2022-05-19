@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             } else {
               return const Scaffold(
                 body: Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitFadingCube(color: kPrimaryColor),
                 ),
               );
             }
