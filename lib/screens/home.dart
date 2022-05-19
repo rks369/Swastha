@@ -5,8 +5,8 @@ import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/screens/home/mental_health.dart';
 import 'package:swastha/screens/home/physical_health.dart';
+import 'package:swastha/screens/side_drawer/bmi_calculator.dart';
 import 'package:swastha/screens/side_drawer/my_account.dart';
-import 'package:swastha/screens/side_drawer/my_details.dart';
 import 'package:swastha/screens/side_drawer/privacy_policy.dart';
 import 'package:swastha/screens/side_drawer/term_and_condition.dart';
 import 'package:swastha/services/change_screen.dart';
@@ -145,10 +145,11 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 DrawerListTile(
-                  title: 'My Details',
-                  icon: Icons.email,
+                  title: 'BMI Calculator',
+                  icon: Icons.monitor_heart,
                   onPress: () {
-                    changeScreen(context, const MyDetails());
+                    changeScreen(
+                        context, const BMICalculator(name: '', profileURL: ''));
                   },
                 ),
                 DrawerListTile(

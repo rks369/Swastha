@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:swastha/screens/side_drawer/parameters_detail.dart';
+import 'package:swastha/screens/side_drawer/bmi_calculator.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/round_button.dart';
@@ -120,7 +120,7 @@ class _UserDetailState extends State<UserDetail> {
                       if (image != null) {
                         changeScreen(
                             context,
-                            ParameterDetail(
+                            BMICalculator(
                                 name: name.text, profileURL: image!.path));
                       }
                     }),

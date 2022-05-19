@@ -8,6 +8,8 @@ const Color kActiveSelect = Color(0xff9B99F9);
 
 const Color kWhite = Colors.white;
 
+const Color kGrey = Color(0xfffafafa);
+
 const TextStyle kHeadingTextStyle = TextStyle(
   fontSize: 36,
   fontWeight: FontWeight.bold,

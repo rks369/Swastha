@@ -34,7 +34,7 @@ class PhysicalHealth extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(
-              color: kWhite,
+              color: kGrey,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30))),
           child: Column(),
