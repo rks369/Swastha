@@ -7,6 +7,8 @@ import 'package:swastha/screens/authentication/on_boarding.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/home.dart';
+import 'package:swastha/utils/styles.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
             } else {
               return const Scaffold(
                 body: Center(
-                  child: CircularProgressIndicator(),
+                  child: SpinKitFadingCube(color: kPrimaryColor),
                 ),
               );
             }

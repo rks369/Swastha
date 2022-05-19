@@ -4,6 +4,7 @@ import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class DashBoard extends StatelessWidget {
         builder: (context, state) {
           if (state == authstate.loading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: SpinKitFadingCube(color: kPrimaryColor),
             );
           }
           return FloatingActionButton(
