@@ -22,7 +22,7 @@ class PhysicalHealth extends StatelessWidget {
           height: 20,
         ),
         const Text(
-          'DashBoard',
+          'Physical Health',
           style: TextStyle(
               color: kWhite, fontSize: 20, fontWeight: FontWeight.bold),
         ),

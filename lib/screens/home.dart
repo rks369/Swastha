@@ -21,14 +21,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int index = 0;
+
+  final List<Widget> pages = [
+    const PhysicalHealth(),
+    const MentalHealth(),
+  ];
   @override
   Widget build(BuildContext context) {
-    int index = 0;
-
-    final List<Widget> pages = [
-      const PhysicalHealth(),
-      const MentalHealth(),
-    ];
     final blocProvider = BlocProvider.of<AuthCubit>(context);
     final _advancedDrawerController = AdvancedDrawerController();
 
@@ -66,7 +66,6 @@ class _HomeState extends State<Home> {
             }),
             currentIndex: index,
             selectedItemColor: kPrimaryColor,
-            unselectedItemColor: kPrimaryColor,
             items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.fitness_center), label: 'Physical'),
