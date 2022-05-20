@@ -6,7 +6,6 @@ import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/home.dart';
-import 'package:swastha/screens/water.dart';
 import 'package:swastha/utils/styles.dart';
 
 void main() async {
