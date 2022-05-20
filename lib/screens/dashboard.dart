@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/authentication/register.dart';
+import 'package:swastha/screens/water.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -45,7 +46,7 @@ class DashBoard extends StatelessWidget {
       floatingActionButton: BlocConsumer<AuthCubit, authstate>(
         listener: (context, state) {
           if (state == authstate.loggedIn) {
-            changeScreenReplacement(context, const DashBoard());
+            changeScreenReplacement(context, const WaterScreen());
           } else if (state == authstate.loggedOut) {
             changeScreenReplacement(context, const Register());
           }

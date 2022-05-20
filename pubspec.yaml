@@ -21,6 +21,7 @@ dependencies:
   image_cropper: ^2.0.0
   equatable: ^2.0.3
   flutter_zoom_drawer: ^3.0.2
+  syncfusion_flutter_gauges: ^20.1.55
 
 dev_dependencies:
   flutter_test:

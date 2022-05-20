@@ -7,6 +7,7 @@ import 'package:swastha/screens/authentication/on_boarding.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/home.dart';
+import 'package:swastha/screens/water.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           }),
           builder: (context, state) {
             if (state == authstate.loggedIn) {
-              return const Home();
+              return const WaterScreen();
             } else if (state == authstate.loggedOut) {
               return const OnBoardingScreen();
             } else if (state == authstate.unRegistered) {
