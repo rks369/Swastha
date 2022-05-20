@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/home.dart';
 import 'package:swastha/screens/authentication/register.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/home.dart';
