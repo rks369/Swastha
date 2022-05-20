@@ -21,58 +21,7 @@ class _WaterScreenState extends State<WaterScreen> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showBottomSheet(
-              context: context,
-              builder: (builder) {
-                return Container(
-                  height: 300,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: kTextFieldDecoration.copyWith(
-                            hintText: "Enter amount of water"),
-                      ),
-                      UserCard(
-                        colour: kWhite,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            const Text(
-                              "Height",
-                              style: TextStyle(
-                                  fontSize: 20.0, color: kPrimaryColor),
-                            ),
-                            Text(
-                              _height.toString(),
-                              style: const TextStyle(
-                                  fontSize: 15.0, color: kPrimaryColor),
-                            ),
-                            Slider(
-                                activeColor: kPrimaryColor,
-                                value: _height.toDouble(),
-                                min: 120.0,
-                                max: 220.0,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _height = value.round();
-                                  });
-                                })
-                          ],
-                        ),
-                        onPress: () {},
-                      ),
-                      Center(
-                        child: RoundedButton(
-                            title: "Done",
-                            colour: kPrimaryColor,
-                            onPressed: () {}),
-                      )
-                    ],
-                  ),
-                );
-              });
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
       body: SafeArea(

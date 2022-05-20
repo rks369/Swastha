@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/models/user_model.dart';
+import 'package:swastha/models/water_model.dart';
 
 enum authstate {
   init,
@@ -23,6 +24,8 @@ class AuthCubit extends Cubit<authstate> {
   User? user;
 
   late UserModel userModel;
+
+  WaterModel waterModel = WaterModel(0.0, 0.0);
 
   AuthCubit() : super(authstate.init) {
     user = _auth.currentUser;
@@ -108,5 +111,13 @@ class AuthCubit extends Cubit<authstate> {
   void logOut() async {
     await _auth.signOut();
     emit(authstate.loggedOut);
+  }
+
+  void setWaterGoal(double goal) {
+    waterModel.goalwater = goal;
+  }
+
+  void setWaterTaken(double taken) {
+    waterModel.takenwater = taken;
   }
 }

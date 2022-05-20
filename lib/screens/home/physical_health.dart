@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swastha/Bloc/auth_cubit.dart';
+import 'package:swastha/screens/home.dart';
 import 'package:swastha/screens/water.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/card.dart';
 import 'package:swastha/widgets/round_button.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -10,6 +14,7 @@ class PhysicalHealth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final blocProvider = BlocProvider.of<AuthCubit>(context);
     return Container(
       decoration: const BoxDecoration(color: kPrimaryColor),
       child: SafeArea(
@@ -121,11 +126,27 @@ class PhysicalHealth extends StatelessWidget {
                                 )
                               ]),
                         ),
+                        Text("taken : ${blocProvider.waterModel.takenwater}"),
+                        Text(" Goal: ${blocProvider.waterModel.goalwater}"),
                         RoundedButton(
-                            title: 'Water Traker',
+                            title: 'Add Water',
                             colour: kPrimaryColor,
                             onPressed: () {
-                              changeScreen(context, const WaterScreen());
+                              showBottomSheet(
+                                  context: context,
+                                  builder: (builder) {
+                                    return AddWater();
+                                  });
+                            }),
+                        RoundedButton(
+                            title: 'Set Goal',
+                            colour: kPrimaryColor,
+                            onPressed: () {
+                              showBottomSheet(
+                                  context: context,
+                                  builder: (builder) {
+                                    return SetWaterGoal();
+                                  });
                             })
                       ],
                     ),
@@ -135,6 +156,168 @@ class PhysicalHealth extends StatelessWidget {
             ),
           ),
         ]),
+      ),
+    );
+  }
+}
+
+class SetWaterGoal extends StatefulWidget {
+  const SetWaterGoal({Key? key}) : super(key: key);
+
+  @override
+  State<SetWaterGoal> createState() => _SetWaterGoalState();
+}
+
+class _SetWaterGoalState extends State<SetWaterGoal> {
+  int _goal = 3;
+  @override
+  Widget build(BuildContext context) {
+    final blocProvider = BlocProvider.of<AuthCubit>(context);
+    return Container(
+      color: kWhite,
+      height: 350,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Enter Amount of Water: ",
+            style: kSubHeadingTextStyle,
+          ),
+          UserCard(
+            colour: kWhite,
+            cardChild: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  "Amount (in L)",
+                  style: TextStyle(fontSize: 20.0, color: kPrimaryColor),
+                ),
+                Text(
+                  _goal.toString(),
+                  style: const TextStyle(fontSize: 15.0, color: kPrimaryColor),
+                ),
+                Slider(
+                    activeColor: kPrimaryColor,
+                    value: _goal.toDouble(),
+                    min: 0.0,
+                    max: 10.0,
+                    onChanged: (value) {
+                      setState(() {
+                        blocProvider.setWaterGoal(_goal + 0.0);
+                        _goal = value.round();
+                      });
+                    })
+              ],
+            ),
+            onPress: () {},
+          ),
+          Center(
+            child: RoundedButton(
+                title: "Done",
+                colour: kPrimaryColor,
+                onPressed: () {
+                  setState(() {
+                    blocProvider.setWaterGoal(_goal + 0.0);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  });
+                  changeScreen(context, Home());
+                }),
+          ),
+          Center(
+            child: RoundedButton(
+                title: "Exit",
+                colour: kPrimaryColor,
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                }),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AddWater extends StatefulWidget {
+  const AddWater({Key? key}) : super(key: key);
+
+  @override
+  State<AddWater> createState() => _AddWaterState();
+}
+
+class _AddWaterState extends State<AddWater> {
+  int _taken = 0;
+  @override
+  Widget build(BuildContext context) {
+    final blocProvider = BlocProvider.of<AuthCubit>(context);
+    return Container(
+      color: kWhite,
+      height: 350,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Enter Amount of Water: ",
+            style: kSubHeadingTextStyle,
+          ),
+          UserCard(
+            colour: kWhite,
+            cardChild: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  "Amount (in ML)",
+                  style: TextStyle(fontSize: 20.0, color: kPrimaryColor),
+                ),
+                Text(
+                  _taken.toString(),
+                  style: const TextStyle(fontSize: 15.0, color: kPrimaryColor),
+                ),
+                Slider(
+                    activeColor: kPrimaryColor,
+                    value: _taken.toDouble(),
+                    min: 0.0,
+                    max: 1000.0,
+                    onChanged: (value) {
+                      setState(() {
+                        blocProvider.setWaterTaken(_taken + 0.0);
+                        _taken = value.round();
+                      });
+                    })
+              ],
+            ),
+            onPress: () {},
+          ),
+          Center(
+            child: RoundedButton(
+                title: "Done",
+                colour: kPrimaryColor,
+                onPressed: () {
+                  setState(() {
+                    blocProvider.setWaterTaken(_taken + 0.0);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  });
+                  changeScreen(context, Home());
+                }),
+          ),
+          Center(
+            child: RoundedButton(
+                title: "Exit",
+                colour: kPrimaryColor,
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                }),
+          ),
+        ],
       ),
     );
   }
