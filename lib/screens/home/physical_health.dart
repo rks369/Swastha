@@ -15,6 +15,8 @@ class PhysicalHealth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blocProvider = BlocProvider.of<AuthCubit>(context);
+    double _taken = blocProvider.waterModel.takenwater;
+    _taken = _taken / 1000;
     return Container(
       decoration: const BoxDecoration(color: kPrimaryColor),
       child: SafeArea(
@@ -71,7 +73,8 @@ class PhysicalHealth extends StatelessWidget {
                                     endAngle: 90,
                                     canScaleToFit: false,
                                     minimum: 0,
-                                    maximum: 100.0,
+                                    maximum:
+                                        blocProvider.waterModel.goalwater + 0.1,
                                     showLabels: false,
                                     showTicks: false,
                                     axisLineStyle: AxisLineStyle(
@@ -80,9 +83,9 @@ class PhysicalHealth extends StatelessWidget {
                                       color: Colors.blue.withOpacity(0.3),
                                       thicknessUnit: GaugeSizeUnit.factor,
                                     ),
-                                    pointers: const <GaugePointer>[
+                                    pointers: <GaugePointer>[
                                       RangePointer(
-                                        value: 50,
+                                        value: _taken + 0.0,
                                         cornerStyle: CornerStyle.bothCurve,
                                         width: 0.1,
                                         sizeUnit: GaugeSizeUnit.factor,
