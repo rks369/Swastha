@@ -25,25 +25,27 @@ class MyApp extends StatelessWidget {
       create: (context) => AuthCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: BlocBuilder<AuthCubit, authstate>(
-          buildWhen: ((previous, current) {
-            return previous == authstate.init;
-          }),
-          builder: (context, state) {
-            if (state == authstate.loggedIn) {
-              return const WaterScreen();
-            } else if (state == authstate.loggedOut) {
-              return const Register();
-            } else if (state == authstate.unRegistered) {
-              return const UserDetail();
-            } else {
-              return const Scaffold(
-                body: Center(
-                  child: SpinKitFadingCube(color: kPrimaryColor),
-                ),
-              );
-            }
-          },
+        home: Scaffold(
+          body: BlocBuilder<AuthCubit, authstate>(
+            buildWhen: ((previous, current) {
+              return previous == authstate.init;
+            }),
+            builder: (context, state) {
+              if (state == authstate.loggedIn) {
+                return const WaterScreen();
+              } else if (state == authstate.loggedOut) {
+                return const Register();
+              } else if (state == authstate.unRegistered) {
+                return const UserDetail();
+              } else {
+                return const Scaffold(
+                  body: Center(
+                    child: SpinKitFadingCube(color: kPrimaryColor),
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ),
     );
