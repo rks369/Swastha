@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
-import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/screens/home/physical_health.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
@@ -68,7 +68,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 BlocConsumer<AuthCubit, authstate>(
                   listener: ((context, state) {
                     if (state == authstate.loggedIn) {
-                      changeScreenReplacement(context, const DashBoard());
+                      changeScreenReplacement(context, const PhysicalHealth());
                     } else if (state == authstate.unRegistered) {
                       changeScreenReplacement(context, const UserDetail());
                     } else if (state == authstate.error) {

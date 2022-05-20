@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swastha/screens/dashboard.dart';
+import 'package:swastha/screens/home/physical_health.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
@@ -77,19 +77,19 @@ class Login extends StatelessWidget {
                     CircularLoginOption(
                       icon: Image.asset('assets/images/google.png'),
                       onTap: () {
-                        changeScreen(context, const DashBoard());
+                        changeScreen(context, const PhysicalHealth());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/fb.jpg'),
                       onTap: () {
-                        changeScreen(context, const DashBoard());
+                        changeScreen(context, const PhysicalHealth());
                       },
                     ),
                     CircularLoginOption(
                       icon: Image.asset('assets/images/twitter.png'),
                       onTap: () {
-                        changeScreen(context, const DashBoard());
+                        changeScreen(context, const PhysicalHealth());
                       },
                     )
                   ],
@@ -99,7 +99,7 @@ class Login extends StatelessWidget {
                   title: 'Continue',
                   colour: kPrimaryColor,
                   onPressed: () {
-                    changeScreen(context, const DashBoard());
+                    changeScreen(context, const PhysicalHealth());
                   })
             ],
           ),

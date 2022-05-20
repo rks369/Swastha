@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swastha/utils/styles.dart';
 
 class CircleButton extends StatelessWidget {
   const CircleButton({Key? key, required this.icon, required this.onpressed})
@@ -9,14 +10,18 @@ class CircleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      child: Icon(icon),
+      elevation: 0.0,
+      child: Icon(
+        icon,
+        color: kWhite,
+      ),
       onPressed: onpressed,
       constraints: const BoxConstraints.tightFor(
-        width: 24.0,
-        height: 24.0,
+        width: 56.0,
+        height: 56.0,
       ),
       shape: const CircleBorder(),
-      fillColor: Colors.white,
+      fillColor: kPrimaryColor,
     );
   }
 }
