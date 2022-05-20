@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             }),
             builder: (context, state) {
               if (state == authstate.loggedIn) {
-                return const WaterScreen();
+                return const Home();
               } else if (state == authstate.loggedOut) {
                 return const Register();
               } else if (state == authstate.unRegistered) {
