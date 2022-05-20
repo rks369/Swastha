@@ -208,7 +208,7 @@ class _SetWaterGoalState extends State<SetWaterGoal> {
                     max: 10.0,
                     onChanged: (value) {
                       setState(() {
-                        blocProvider.setWaterGoal(_goal + 0.0);
+                        // blocProvider.setWaterGoal(_goal + 0.0);
                         _goal = value.round();
                       });
                     })
@@ -289,7 +289,7 @@ class _AddWaterState extends State<AddWater> {
                     max: 1000.0,
                     onChanged: (value) {
                       setState(() {
-                        blocProvider.setWaterTaken(_taken + 0.0);
+                        //  blocProvider.setWaterTaken(_taken + 0.0);
                         _taken = value.round();
                       });
                     })
@@ -303,7 +303,8 @@ class _AddWaterState extends State<AddWater> {
                 colour: kPrimaryColor,
                 onPressed: () {
                   setState(() {
-                    blocProvider.setWaterTaken(_taken + 0.0);
+                    blocProvider.setWaterTaken(
+                        _taken + 0.0 + blocProvider.waterModel.takenwater);
                     Navigator.pop(context);
                     Navigator.pop(context);
                   });
