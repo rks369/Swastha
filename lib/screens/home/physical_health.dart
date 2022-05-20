@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:swastha/screens/water.dart';
+import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
+import 'package:swastha/widgets/round_button.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class PhysicalHealth extends StatelessWidget {
@@ -118,6 +121,12 @@ class PhysicalHealth extends StatelessWidget {
                                 )
                               ]),
                         ),
+                        RoundedButton(
+                            title: 'Water Traker',
+                            colour: kPrimaryColor,
+                            onPressed: () {
+                              changeScreen(context, const WaterScreen());
+                            })
                       ],
                     ),
                   ),
