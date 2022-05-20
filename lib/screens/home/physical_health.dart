@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
 import 'package:swastha/screens/home.dart';
-import 'package:swastha/screens/water.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/card.dart';
@@ -138,7 +137,7 @@ class PhysicalHealth extends StatelessWidget {
                               showBottomSheet(
                                   context: context,
                                   builder: (builder) {
-                                    return AddWater();
+                                    return const AddWater();
                                   });
                             }),
                         RoundedButton(
@@ -148,7 +147,7 @@ class PhysicalHealth extends StatelessWidget {
                               showBottomSheet(
                                   context: context,
                                   builder: (builder) {
-                                    return SetWaterGoal();
+                                    return const SetWaterGoal();
                                   });
                             })
                       ],
@@ -226,7 +225,7 @@ class _SetWaterGoalState extends State<SetWaterGoal> {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   });
-                  changeScreen(context, Home());
+                  changeScreen(context, const Home());
                 }),
           ),
           Center(
@@ -308,7 +307,7 @@ class _AddWaterState extends State<AddWater> {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   });
-                  changeScreen(context, Home());
+                  changeScreen(context, const Home());
                 }),
           ),
           Center(
