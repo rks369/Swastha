@@ -5,7 +5,6 @@ import 'package:swastha/screens/authentication/bmi_reg.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/authentication/verify_otp.dart';
 import 'package:swastha/screens/home/physical_health.dart';
-import 'package:swastha/screens/side_drawer/bmi_calculator.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
