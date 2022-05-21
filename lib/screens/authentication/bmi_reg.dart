@@ -287,17 +287,32 @@ class _BMIReg extends State<BMIReg> {
                             colour: kPrimaryColor,
                             onPressed: () {
                               final _auth = FirebaseAuth.instance.currentUser;
-                              BlocProvider.of<AuthCubit>(context).register(
-                                  UserModel(
-                                      _auth!.uid,
-                                      _auth.email!,
-                                      _auth.displayName!,
-                                      _auth.photoURL!,
-                                      selectedMale ? 'Male' : 'Female',
-                                      height.toString(),
-                                      weight.toString(),
-                                      age.toString(),
-                                      calculateBMI()));
+
+                              if (widget.name != null) {
+                                BlocProvider.of<AuthCubit>(context).register(
+                                    UserModel(
+                                        _auth!.uid,
+                                        _auth.email!,
+                                        widget.name!,
+                                        widget.profileURL!,
+                                        selectedMale ? 'Male' : 'Female',
+                                        height.toString(),
+                                        weight.toString(),
+                                        age.toString(),
+                                        calculateBMI()));
+                              } else {
+                                BlocProvider.of<AuthCubit>(context).register(
+                                    UserModel(
+                                        _auth!.uid,
+                                        _auth.email!,
+                                        _auth.displayName!,
+                                        _auth.photoURL!,
+                                        selectedMale ? 'Male' : 'Female',
+                                        height.toString(),
+                                        weight.toString(),
+                                        age.toString(),
+                                        calculateBMI()));
+                              }
                             });
                       }),
                     ),
