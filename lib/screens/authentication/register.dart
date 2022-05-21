@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swastha/Bloc/auth_cubit.dart';
+import 'package:swastha/screens/authentication/bmi_reg.dart';
 import 'package:swastha/screens/authentication/user_detail.dart';
 import 'package:swastha/screens/authentication/verify_otp.dart';
+import 'package:swastha/screens/home/physical_health.dart';
+import 'package:swastha/screens/side_drawer/bmi_calculator.dart';
 import 'package:swastha/services/change_screen.dart';
 import 'package:swastha/utils/styles.dart';
 import 'package:swastha/widgets/circular_login_component.dart';
@@ -81,10 +84,35 @@ class _RegisterState extends State<Register> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CircularLoginOption(
-                      icon: Image.asset('assets/images/google.png'),
-                      onTap: () {
-                        changeScreen(context, const UserDetail());
+                    BlocConsumer<AuthCubit, authstate>(
+                      listener: ((context, state) {
+                        if (state == authstate.loggedIn) {
+                          changeScreenReplacement(
+                              context, const PhysicalHealth());
+                        } else if (state == authstate.unRegistered) {
+                          changeScreenReplacement(context, const BMIReg());
+                        } else if (state == authstate.error) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Some Error Occured'),
+                            ),
+                          );
+                        }
+                      }),
+                      builder: (context, state) {
+                        if (state == authstate.loading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        return CircularLoginOption(
+                          icon: Image.asset('assets/images/google.png'),
+                          onTap: () {
+                            BlocProvider.of<AuthCubit>(context)
+                                .signInWithGoogle();
+                          },
+                        );
                       },
                     ),
                     CircularLoginOption(

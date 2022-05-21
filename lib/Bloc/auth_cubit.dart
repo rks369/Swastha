@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:swastha/models/user_model.dart';
 import 'package:swastha/models/water_model.dart';
 
@@ -86,6 +87,42 @@ class AuthCubit extends Cubit<authstate> {
   }
 
   void signInWithPhone(PhoneAuthCredential credential) async {
+    try {
+      user = await _auth
+          .signInWithCredential(credential)
+          .then((value) => value.user);
+
+      if (user != null) {
+        _firestore.collection('users').doc(user!.uid).get().then((value) {
+          if (value.exists) {
+            final data = value.data();
+
+            userModel = userModelFromJSON(data!);
+            emit(authstate.loggedIn);
+          } else {
+            emit(authstate.unRegistered);
+          }
+        });
+      }
+    } on FirebaseAuthException catch (e) {
+      error = e.toString();
+    }
+  }
+
+  void signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
     try {
       user = await _auth
           .signInWithCredential(credential)
